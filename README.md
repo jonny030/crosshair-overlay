@@ -4,6 +4,10 @@ English | [繁體中文](docs/README_zh-TW.md)
 
 A customizable, transparent, and always-on-top crosshair overlay for Windows, built with Electron. Perfect for FPS games or any application where you need a persistent center-screen reference.
 
+## Download
+
+[⬇️ Download Latest Version from GitHub Releases](https://github.com/jonny030/crosshair-overlay/releases/latest)
+
 ## Features
 
 - **Always on top & Transparent:** The crosshair stays above all other windows and ignores mouse clicks (won't interfere with your games).

@@ -4,6 +4,10 @@
 
 這是一個使用 Electron 開發的 Windows 桌面應用程式，提供可自訂、透明且永遠置頂的準星（Crosshair）覆蓋層。非常適合 FPS 射擊遊戲，或是任何需要螢幕中心參考點的應用場景。
 
+## 下載
+
+[⬇️ 從 GitHub Releases 下載最新版本](https://github.com/jonny030/crosshair-overlay/releases/latest)
+
 ## 功能特色
 
 - **永遠置頂與滑鼠穿透：** 準星會固定顯示在所有視窗的最上層，並且會穿透滑鼠點擊（完全不會干擾您的遊戲或日常操作）。
