@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .style-btn {
+                @apply flex-1 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-gray-200 transition flex justify-center items-center cursor-pointer;
+            }
+            .style-btn.active {
+                @apply border-blue-500 bg-blue-500/20 text-blue-400 ring-1 ring-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)];
+            }
+            .control-group {
+                @apply mb-5;
+            }
+            .label-flex {
+                @apply flex justify-between mb-2;
+            }
+            .label-text {
+                @apply text-sm font-medium text-gray-300;
+            }
+            .val-text {
+                @apply text-sm font-bold text-blue-400;
+            }
+            input[type="range"] {
+                @apply w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500;
+            }
+            input[type="color"]::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+            input[type="color"]::-webkit-color-swatch {
+                border: none;
+                border-radius: 0.375rem;
+            }
+            .lang-btn {
+                @apply px-3 py-1 text-sm font-medium rounded-md transition-colors text-gray-400 hover:text-gray-200 cursor-pointer;
+            }
+            .lang-btn.active {
+                @apply bg-blue-600 text-white shadow-sm hover:bg-blue-500;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 font-sans select-none overflow-y-auto">
+    <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
+        <h2 class="text-2xl font-bold tracking-wide" data-i18n="title">⚙️ Settings</h2>
+        <div class="flex bg-gray-800 rounded-lg p-1 space-x-1 border border-gray-700">
+            <button type="button" class="lang-btn active" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" data-lang="zh-TW">中</button>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="flex items-center justify-between cursor-pointer p-3 bg-gray-800 border border-gray-700 rounded-lg hover:bg-gray-750 transition">
+            <span class="font-medium text-gray-200" data-i18n="showCrosshair">Show Crosshair</span>
+            <div class="relative">
+                <input type="checkbox" id="visible" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-gray-300 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+            </div>
+        </label>
+    </div>
+
+    <div class="control-group">
+        <label class="label-text block mb-2" data-i18n="style">Style</label>
+        <input type="hidden" id="style" value="cross">
+        <div class="flex gap-2">
+            <button type="button" class="style-btn active" data-value="cross" title="Cross">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 4v16M4 12h16"/></svg>
+            </button>
+            <button type="button" class="style-btn" data-value="dot" title="Dot">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+            </button>
+            <button type="button" class="style-btn" data-value="circle" title="Circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/></svg>
+            </button>
+            <button type="button" class="style-btn" data-value="t-shape" title="T-Shape">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 12v8M4 12h16"/></svg>
+            </button>
+            <button type="button" class="style-btn" data-value="cross-dot" title="Cross + Dot">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                    <path d="M12 4v5M12 15v5M4 12h5M15 12h5"/>
+                    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="label-text block mb-2" data-i18n="color">Color</label>
+        <input type="color" id="color" class="w-full h-10 p-0 border-0 rounded-md cursor-pointer bg-transparent">
+    </div>
+
+    <div class="control-group">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="size">Size</label>
+            <span class="val-text" id="size-val"></span>
+        </div>
+        <input type="range" id="size" min="1" max="100">
+    </div>
+    <div class="control-group">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="thickness">Thickness</label>
+            <span class="val-text" id="thickness-val"></span>
+        </div>
+        <input type="range" id="thickness" min="1" max="20">
+    </div>
+    <div class="control-group">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="gap">Gap</label>
+            <span class="val-text" id="gap-val"></span>
+        </div>
+        <input type="range" id="gap" min="0" max="50">
+    </div>
+    <div class="control-group">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="opacity">Opacity</label>
+            <span class="val-text" id="opacity-val"></span>
+        </div>
+        <input type="range" id="opacity" min="10" max="100">
+    </div>
+    <div class="control-group">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="offsetX">Offset X</label>
+            <span class="val-text" id="offsetX-val"></span>
+        </div>
+        <input type="range" id="offsetX" min="-300" max="300" value="0">
+    </div>
+    <div class="control-group mb-8">
+        <div class="label-flex">
+            <label class="label-text" data-i18n="offsetY">Offset Y</label>
+            <span class="val-text" id="offsetY-val"></span>
+        </div>
+        <input type="range" id="offsetY" min="-300" max="300" value="0">
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

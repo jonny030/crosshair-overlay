@@ -1,0 +1,35 @@
+{
+  "name": "crosshair-overlay",
+  "version": "1.0.0",
+  "description": "Crosshair Windows Overlay App",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --win",
+    "postbuild": "node -e \"const fs=require('fs'); fs.existsSync('release') && fs.readdirSync('release').forEach(f => !f.endsWith('.exe') && fs.rmSync('release/' + f, { recursive: true, force: true }))\""
+  },
+  "build": {
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "appId": "com.crosshair.overlay",
+    "productName": "Crosshair Overlay",
+    "icon": "assets/icon.png",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.3.3",
+    "electron-builder": "^26.8.1"
+  }
+}

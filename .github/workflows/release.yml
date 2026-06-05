@@ -1,0 +1,33 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*' # 當推送標籤如 v1.0.0, v1.0.1 時觸發
+
+jobs:
+  release:
+    runs-on: windows-latest # 使用 Windows 環境編譯，確保 .exe 打包順利
+
+    permissions:
+      contents: write # 允許 GitHub Actions 建立 Release 並上傳檔案
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 指定 Node.js 版本
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Application
+        run: npm run build
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*.exe # 自動將 release 目錄下的安裝檔和免安裝檔上傳
