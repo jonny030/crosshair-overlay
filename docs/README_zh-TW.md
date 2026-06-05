@@ -33,8 +33,8 @@
 
 1. 複製此專案到本機：
    ```bash
-   git clone <your-repo-url>
-   cd Crosshair
+   git clone https://github.com/jonny030/crosshair-overlay.git
+   cd crosshair-overlay
    ```
 2. 安裝所需套件：
    ```bash
