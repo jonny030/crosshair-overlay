@@ -67,6 +67,8 @@ function createWindows() {
     });
     
     overlayWindow.setIgnoreMouseEvents(true);
+    overlayWindow.setAlwaysOnTop(true, 'screen-saver');
+    overlayWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
     overlayWindow.loadFile(path.join(__dirname, 'overlay.html'));
     overlayWindow.webContents.on('did-finish-load', () => {
         overlayWindow.webContents.send('update-crosshair', settings);
